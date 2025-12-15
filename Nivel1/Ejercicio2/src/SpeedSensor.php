@@ -15,13 +15,13 @@ class SpeedSensor {
         } else if ($this->speed <= 60) {
             return "Suitable speed";
         } else if ($this->speed <= 80) {
+            return "Slight excess";
+        } else if ($this->speed <= 100){
             return "Moderate excess";
         } else {
             return "Serious excess";
         }
-        
     }
-
 }
 
 ?>
