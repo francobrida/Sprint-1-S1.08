@@ -1,14 +1,24 @@
 <?php
 
+enum Genre: string { // enum for optional genres.
+        case Adventure = "Adventure";
+        case ScienceFiction = "Science Fiction";
+        case ShortStories = "Short Stories";
+        case CrimeNovel = "Crime Novel";
+        case Paranormal = "Paranormal";
+        case Dystopia = "Dystopia";
+        case Fantasy = "Fantasy";
+    }
+
  class Book {
 
     private string $name;
     private string $author;
     private int $isbn;
-    private string $genre;
+    private Genre $genre;
     private int $pages;
 
-    public function __construct(string $name, string $author, int $isbn, string $genre, int $pages) {
+    public function __construct(string $name, string $author, int $isbn, Genre $genre, int $pages) {
         $this->name = $name;
         $this->author = $author;
         $this->isbn = $isbn;
@@ -26,7 +36,7 @@
     public function getIsbn(): int {
         return $this->isbn;
     }
-    public function getGenre(): string {
+    public function getGenre(): Genre {
         return $this->genre;
     }
     public function getPages(): int {
@@ -43,7 +53,7 @@
     public function setIsbn(int $isbn): void {
         $this->isbn = $isbn;
     }
-    public function setGenre(string $genre): void {
+    public function setGenre(Genre $genre): void {
         $this->genre = $genre;
     }
 

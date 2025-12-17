@@ -16,7 +16,7 @@ class Library {
         $this->books = $books;
     }
 
-    public function addBook(string $name, string $author, int $isbn, string $genre, int $pages):void {
+    public function addBook(string $name, string $author, int $isbn, Genre $genre, int $pages):void {
         array_push($this->books, new Book($name, $author, $isbn, $genre, $pages));
     }
 
@@ -30,6 +30,50 @@ class Library {
         }
     }
 
+    function modifyBook(string $name,string $author) : void {
+        foreach ($this->books as $book){
+            if ($book->getName === $name){
+                $book->setAuthor($author);
+            }
+        }
+    }
+
+    function searchByName(string $name) : ?Book{ // From what I've read, this "?Book" allows to return the type or null value.
+        foreach ($this->books as $book){
+            if ($book->getName() === $name){
+                return $book;
+            } 
+        }
+        return null;
+    }
+
+    function searchByGenre(Genre $genre) : ?Book{
+        foreach ($this->books as $book){
+            if ($book->getGenre() === $genre){
+                return $book;
+            } 
+        }
+        return null;
+    }
+
+    function searchByIsbn(int $isbn) : ?Book{
+        foreach ($this->books as $book){
+            if ($book->getIsbn() === $isbn){
+                return $book;
+            } 
+        }
+        return null;
+    }
+
+    function searchByAuthor(string $author) : ?Book{
+        foreach ($this->books as $book){
+            if ($book->getAuthor() === $author){
+                return $book;
+            } 
+        }
+        return null;
+    }
+
     function returnLargeBooks() : array {
         $largePages = 500;
         $arrayOfLargeBooks = [];
@@ -40,6 +84,7 @@ class Library {
         } 
         return $arrayOfLargeBooks;
     }
+
 
 
 }
