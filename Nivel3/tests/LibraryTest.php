@@ -1,7 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-
+include __DIR__ . '/../src/Library.php';
+include __DIR__ . '/../src/Book.php';
 use function PHPUnit\Framework\assertGreaterThan;
 use function PHPUnit\Framework\assertSame;
 
@@ -10,7 +11,7 @@ class LibraryTest extends TestCase {
     private Library $newLibrary;
     
     /* I started coding this test with DataProviders, but switched to this hardcoded setUp() way, since I needed the 
-    library to have already some books to test some functions properly.
+    library to have already some books to test functions properly. A combination of this and DataProviders seemed too complex?
     */
     public function setUp() : void {
         $this->newLibrary = new Library();
@@ -21,7 +22,12 @@ class LibraryTest extends TestCase {
         ]);
     }
 
-    public function testAddBook(string $name, string $author, int $isbn, Genre $genre, int $pages) : void {
+    public function testAddBook() : void {
+        $name = "Dune";
+        $author = "Frank Herbert";
+        $isbn = 9780441013593;
+        $genre = Genre::ScienceFiction;
+        $pages = 688;
         $this->newLibrary->addBook($name, $author, $isbn, $genre, $pages); 
         $this->assertSame($name, $this->newLibrary->getBooks()[count($this->newLibrary->getBooks())-1]->getName());
     }
@@ -42,14 +48,14 @@ class LibraryTest extends TestCase {
     }
 
     public function testModifyBook() : void {
-        // Which parameter to modify?? -- for this exercise, I'll modify just the author since every parameter seems a lot of time.
+        // Which parameter to modify?? -- for this exercise, I'll modify just the author...
         $name = "The Hobbit";
         $newAuthor = "Stephen King";
         $this->newLibrary->modifyBook($name, $newAuthor);
         
         foreach ($this->newLibrary->getBooks() as $book){
             if ($book->getName() === $name){
-                assertSame($newAuthor,$book->getAuthor());
+                $this->assertSame($newAuthor,$book->getAuthor());
             }
         }
     }

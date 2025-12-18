@@ -21,9 +21,9 @@ class Library {
     }
 
     public function deleteBook(string $name): void{
-        foreach ($this->books as $book){
+        foreach ($this->books as $index => $book){
             if ($book->getName() === $name){
-                unset($this->books[$book]);
+                unset($this->books[$index]);
                 $this->books = array_values($this->books); 
                 break;
             }
@@ -32,13 +32,13 @@ class Library {
 
     function modifyBook(string $name,string $author) : void {
         foreach ($this->books as $book){
-            if ($book->getName === $name){
+            if ($book->getName() === $name){
                 $book->setAuthor($author);
             }
         }
     }
 
-    function searchByName(string $name) : ?Book{ // From what I've read, this "?Book" allows to return the type or null value.
+    function searchByName(string $name) : ?Book{ // From what I've read, this "?Book" allows to return null if no book is found.
         foreach ($this->books as $book){
             if ($book->getName() === $name){
                 return $book;
@@ -78,7 +78,7 @@ class Library {
         $largePages = 500;
         $arrayOfLargeBooks = [];
         foreach ($this->books as $book){
-            if ($book->getPages > $largePages){
+            if ($book->getPages() > $largePages){
                 array_push($arrayOfLargeBooks, $book);
             }
         } 

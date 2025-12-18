@@ -1,6 +1,6 @@
 <?php
 
-enum Genre: string { // enum for optional genres.
+enum Genre: string { 
         case Adventure = "Adventure";
         case ScienceFiction = "Science Fiction";
         case ShortStories = "Short Stories";
@@ -42,6 +42,7 @@ enum Genre: string { // enum for optional genres.
     public function getPages(): int {
         return $this->pages;
     }
+    
     // Setters
     public function setName(string $name): void {
         $this->name = $name;
