@@ -1,18 +1,15 @@
 <?php
+declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 include __DIR__ . '/../src/Library.php';
 include __DIR__ . '/../src/Book.php';
-use function PHPUnit\Framework\assertGreaterThan;
-use function PHPUnit\Framework\assertSame;
 
 class LibraryTest extends TestCase {
 
     private Library $newLibrary;
     
-    /* I started coding this test with DataProviders, but switched to this hardcoded setUp() way, since I needed the 
-    library to have already some books to test functions properly. A combination of this and DataProviders seemed too complex?
-    */
+    
     public function setUp() : void {
         $this->newLibrary = new Library();
         $this->newLibrary->setBooks([
