@@ -32,12 +32,14 @@ class Library {
         return "Book not found";
     }
 
-    function modifyBook(string $name,string $author) : void {
+    function modifyBook(string $name,string $author) : string {
         foreach ($this->books as $book){
             if ($book->getName() === $name){
                 $book->setAuthor($author);
+                return "Success.";
             }
         }
+        return "Book not found. Could not modify.";
     }
 
     function searchByName(string $name) : ?Book { 
@@ -49,13 +51,14 @@ class Library {
         return null;
     }
 
-    function searchByGenre(Genre $genre) : ?Book{
+    function searchByGenre(Genre $genre) : array {
+        $foundBooks = [];
         foreach ($this->books as $book){
             if ($book->getGenre() === $genre){
-                return $book;
+                $foundBooks[] = $book;
             } 
         }
-        return null;
+        return $foundBooks;
     }
 
     function searchByIsbn(int $isbn) : ?Book{
@@ -67,13 +70,14 @@ class Library {
         return null;
     }
 
-    function searchByAuthor(string $author) : ?Book{
+    function searchByAuthor(string $author) : array {
+        $foundBooks = [];
         foreach ($this->books as $book){
             if ($book->getAuthor() === $author){
-                return $book;
+                $foundBooks[] = $book;
             } 
         }
-        return null;
+        return $foundBooks;
     }
 
     function returnLargeBooks() : array {
