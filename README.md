@@ -7,6 +7,11 @@ Implement use of TDD.
 ## 🛠 Tecnology  
 - Backend: PHP
 - Framework: PHPUnit 
+
+## 🚀 Installation
+git clone https://github.com/francobrida/Sprint-1-S1.08.git
+composer install
+
 ## Comments
-Finished Nivel 2, expecting to do Nivel3 this week.
+---
   
