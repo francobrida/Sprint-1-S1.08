@@ -9,7 +9,7 @@ class SpeedSensor {
         $this->speed = $speed;
     }
 
-    function rateSpeed() : string {
+    public function rateSpeed() : string {
 
         if ($this->speed < 30) {
             return "Very slow";

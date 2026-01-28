@@ -3,8 +3,6 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-use function PHPUnit\Framework\assertEquals;
-
 require_once __DIR__ . '/../src/SpeedSensor.php';
 
 class SpeedSensorTest extends TestCase {
@@ -25,7 +23,7 @@ class SpeedSensorTest extends TestCase {
     public function testSpeedSensor(int $num, string $speed) : void {
         $speedSensor = new SpeedSensor($num);
 
-        assertEquals($speed, $speedSensor->rateSpeed());
+        $this->assertEquals($speed, $speedSensor->rateSpeed());
 
     }
 

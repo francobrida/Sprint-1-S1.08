@@ -6,8 +6,7 @@ require_once __DIR__ . '/../src/NumberChecker.php';
 
 class NumberCheckerTest extends TestCase {
 
-	private NumberChecker $numberCheck;
-	private NumberChecker $numberCheck2;
+	private NumberChecker $numberCheck, $numberCheck2;
 
 	public function setUp(): void {
 		$this->numberCheck = new NumberChecker(5);
