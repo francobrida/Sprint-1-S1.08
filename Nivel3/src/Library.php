@@ -22,16 +22,14 @@ class Library {
     }
 
     public function deleteBook(string $name): string {
-        $found = false;
         foreach ($this->books as $index => $book){
             if ($book->getName() === $name){
                 unset($this->books[$index]);
                 $this->books = array_values($this->books); 
-                $found = true;
-                break;
+                return "$name succesfully deleted";
             } 
         }
-        return $found? "$name succesfully deleted" : "Book not found";
+        return "Book not found";
     }
 
     function modifyBook(string $name,string $author) : void {
