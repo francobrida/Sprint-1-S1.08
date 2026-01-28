@@ -1,17 +1,8 @@
 <?php
 declare(strict_types=1);
+require_once 'Genre.php';
 
-enum Genre: string { 
-        case Adventure = "Adventure";
-        case ScienceFiction = "Science Fiction";
-        case ShortStories = "Short Stories";
-        case CrimeNovel = "Crime Novel";
-        case Paranormal = "Paranormal";
-        case Dystopia = "Dystopia";
-        case Fantasy = "Fantasy";
-    }
-
- class Book {
+class Book {
 
     private string $name;
     private string $author;
@@ -44,19 +35,10 @@ enum Genre: string {
         return $this->pages;
     }
     
-    // Setters
-    public function setName(string $name): void {
-        $this->name = $name;
-    }
+    // Setter
+
     public function setAuthor(string $author): void {
         $this->author = $author;
-    }
-
-    public function setIsbn(int $isbn): void {
-        $this->isbn = $isbn;
-    }
-    public function setGenre(Genre $genre): void {
-        $this->genre = $genre;
     }
 
  }

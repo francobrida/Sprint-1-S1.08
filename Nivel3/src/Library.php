@@ -18,17 +18,20 @@ class Library {
     }
 
     public function addBook(string $name, string $author, int $isbn, Genre $genre, int $pages):void {
-        array_push($this->books, new Book($name, $author, $isbn, $genre, $pages));
+        $this->books[] = new Book($name, $author, $isbn, $genre, $pages);
     }
 
-    public function deleteBook(string $name): void{
+    public function deleteBook(string $name): string {
+        $found = false;
         foreach ($this->books as $index => $book){
             if ($book->getName() === $name){
                 unset($this->books[$index]);
                 $this->books = array_values($this->books); 
+                $found = true;
                 break;
-            }
+            } 
         }
+        return $found? "$name succesfully deleted" : "Book not found";
     }
 
     function modifyBook(string $name,string $author) : void {
@@ -39,7 +42,7 @@ class Library {
         }
     }
 
-    function searchByName(string $name) : ?Book{ // From what I've read, this "?Book" allows to return null if no book is found.
+    function searchByName(string $name) : ?Book { 
         foreach ($this->books as $book){
             if ($book->getName() === $name){
                 return $book;
@@ -80,7 +83,7 @@ class Library {
         $arrayOfLargeBooks = [];
         foreach ($this->books as $book){
             if ($book->getPages() > $largePages){
-                array_push($arrayOfLargeBooks, $book);
+                $arrayOfLargeBooks[] = $book;
             }
         } 
         return $arrayOfLargeBooks;
