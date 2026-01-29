@@ -69,7 +69,7 @@ class Library {
         }
         return null;
     }
-
+    
     function searchByAuthor(string $author) : array {
         $foundBooks = [];
         foreach ($this->books as $book){

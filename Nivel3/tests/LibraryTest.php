@@ -64,7 +64,12 @@ class LibraryTest extends TestCase {
         $this->assertSame($name, $bookFound->getName());
     }
 
-     public function testSearchByGenre(): void {
+    public function testSearchByNameNotFound(): void {
+        $bookFound = $this->newLibrary->searchByName("notfound");
+        $this->assertNull($bookFound);
+    }
+
+    public function testSearchByGenre(): void {
         $genre = Genre::Dystopia;
         $booksFound = $this->newLibrary->searchByGenre($genre);
         foreach($booksFound as $book){
@@ -78,6 +83,7 @@ class LibraryTest extends TestCase {
         $bookFound = $this->newLibrary->searchByIsbn($isbn);
         $this->assertSame($isbn, $bookFound->getIsbn());
     }
+    
 
     public function testSearchByAuthor(): void {
         $author = "George Orwell";
