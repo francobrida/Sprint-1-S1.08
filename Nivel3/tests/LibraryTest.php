@@ -40,21 +40,22 @@ class LibraryTest extends TestCase {
                 break;
             }
         }
-
-    $this->assertFalse($found);
+        $this->assertFalse($found);
     }
 
     public function testModifyBook() : void {
         // Which parameter to modify?? -- for this exercise, I'll modify just the author...
         $name = "The Hobbit";
         $newAuthor = "Stephen King";
+        $success = false;
         $this->newLibrary->modifyBook($name, $newAuthor);
         
         foreach ($this->newLibrary->getBooks() as $book){
-            if ($book->getName() === $name){
-                $this->assertSame($newAuthor,$book->getAuthor());
+            if ($book->getName() === $name && $newAuthor === $book->getAuthor()){
+               $success = true;
             }
         }
+        $this->assertTrue($success);
     }
 
     public function testSearchByName(): void {
@@ -65,8 +66,11 @@ class LibraryTest extends TestCase {
 
      public function testSearchByGenre(): void {
         $genre = Genre::Dystopia;
-        $bookFound = $this->newLibrary->searchByGenre($genre);
-        $this->assertSame($genre, $bookFound->getGenre());
+        $booksFound = $this->newLibrary->searchByGenre($genre);
+        foreach($booksFound as $book){
+            $this->assertSame($genre, $book->getGenre());
+        }
+        
     }
 
     public function testSearchByIsbn(): void {
@@ -77,8 +81,11 @@ class LibraryTest extends TestCase {
 
     public function testSearchByAuthor(): void {
         $author = "George Orwell";
-        $bookFound = $this->newLibrary->searchByAuthor($author);
-        $this->assertSame($author, $bookFound->getAuthor());
+        $booksFound = $this->newLibrary->searchByAuthor($author);
+        foreach($booksFound as $book){
+            $this->assertSame($author, $book->getAuthor());
+        }
+        
     }
 
     public function testReturnLargeBooks(): void {
